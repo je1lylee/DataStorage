@@ -1,3 +1,9 @@
 <resources>
     <string name="app_name">DataStorage</string>
+    <string-array name="example_info_array">
+        <item name="share_pre_1">SharedPreference 基础练习</item>
+        <item name="share_pre_2">SharedPreference 保存密码</item>
+        <item name="file_store">文件存储</item>
+        <item name="sqlite_store">SQLite数据库</item>
+    </string-array>
 </resources>
