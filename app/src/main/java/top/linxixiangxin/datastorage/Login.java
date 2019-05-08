@@ -31,9 +31,6 @@ public class Login extends AppCompatActivity {
             passwordd.setText(sps.getString("passWord",""));
         }
 
-
-
-
         //EVENT
         login.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -46,7 +43,13 @@ public class Login extends AppCompatActivity {
                         editor.putString("userName", account);
                         editor.putString("passWord", password);
                         editor.putBoolean("isSaved",remember_pass.isChecked());
-                        editor.commit();
+                        editor.apply();
+                    }else{
+                        SharedPreferences.Editor editor = getSharedPreferences("login",MODE_PRIVATE).edit();
+                        editor.putString("userName", "");
+                        editor.putString("passWord", "");
+                        editor.putBoolean("isSaved",false);
+                        editor.apply();
                     }
                     Intent intent = new Intent(Login.this,Welcome.class);
                     startActivity(intent);

@@ -24,7 +24,7 @@ private Button savedata,restoredata;
                 editor.putString("Name","Apple");
                 editor.putInt("age",200);
                 editor.putBoolean("young",true);
-                editor.commit();//或者是apply()方法来提交数据更改
+                editor.commit();//或者是apply()方法来提交数据更改 commit主线程同步提交 apply交给操作系统 异步处理
                 Log.d(TAG, "onClick: SUCCESS ADD DATA");
             }
         });

@@ -39,16 +39,9 @@ public class MainActivity extends AppCompatActivity {
                         intent.setClass(MainActivity.this,Login.class);
                         startActivity(intent);
                         break;
-                   /* case 3:
-                        intent.setClass(MainActivity.this,adapter_simple_adapter.class);
+                    case 2:
+                        intent.setClass(MainActivity.this,file_persist.class);
                         startActivity(intent);
-                        break;
-                    case 4:
-                        intent.setClass(adapter.this,adapter_base_adapter.class);
-                        startActivity(intent);
-                    case 6:
-                        intent.setClass(adapter.this,wechat_final_moment.class);
-                        startActivity(intent);*/
                     default:
                         Toast.makeText(MainActivity.this, "#暂不可用#", Toast.LENGTH_SHORT).show();
                 }
