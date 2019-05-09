@@ -19,7 +19,12 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
     </application>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE"/>
+    <uses-permission android:name="android.permission.READ_CONTACTS"/>
+    <!--读写外部存储权限和读文件目录权限-->
 
 </manifest>
