@@ -42,6 +42,9 @@ public class MainActivity extends AppCompatActivity {
                     case 2:
                         intent.setClass(MainActivity.this,file_persist.class);
                         startActivity(intent);
+                    case 3:
+                        intent.setClass(MainActivity.this,Dict.class);
+                        startActivity(intent);
                     default:
                         Toast.makeText(MainActivity.this, "#暂不可用#", Toast.LENGTH_SHORT).show();
                 }

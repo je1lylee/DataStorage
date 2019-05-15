@@ -29,6 +29,7 @@ public class file_persist extends AppCompatActivity {
     private Button saveToFile, SaveToSD, readData, readSD;
     private TextView result;
     private static final String TAG = "dialog";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -42,15 +43,15 @@ public class file_persist extends AppCompatActivity {
         SaveToSD.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if(Build.VERSION.SDK_INT >=23){//SDK>=23需要动态申请权限
-                    if(checkCallingPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED){
-                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE},300);
-                    }else{
-                        saveToSD("saveToSD",editText.getText().toString());
+                if (Build.VERSION.SDK_INT >= 23) {//SDK>=23需要动态申请权限
+                    if (checkCallingPermission(Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_DENIED) {
+                        requestPermissions(new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE}, 300);
+                    } else {
+                        saveToSD("saveToSD", editText.getText().toString());
                     }
 
-                }else{
-                    saveToSD("saveToSD",editText.getText().toString());
+                } else {
+                    saveToSD("saveToSD", editText.getText().toString());
                 }
             }
         });
@@ -71,24 +72,25 @@ public class file_persist extends AppCompatActivity {
             }
         });
     }
-    private void saveToSD(String fileName, String FileContent){
+
+    private void saveToSD(String fileName, String FileContent) {
         //保存到SD卡
         //TODO 判断SD卡状态是否可用
-        if(Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) || !Environment.isExternalStorageRemovable()){ //证实SD卡可用
+        if (Environment.getExternalStorageState().equals(Environment.MEDIA_MOUNTED) || !Environment.isExternalStorageRemovable()) { //证实SD卡可用
             Log.d(TAG, "saveToSD: SD卡可用");
-            try{
+            try {
                 String path = Environment.getExternalStoragePublicDirectory(Environment.DIRECTORY_DOWNLOADS).getAbsolutePath();
-                File file = new File(path,fileName);
+                File file = new File(path, fileName);
                 FileOutputStream fos = new FileOutputStream(file);
                 fos.write(FileContent.getBytes());
                 fos.close();
-            }catch (FileNotFoundException e){
+            } catch (FileNotFoundException e) {
                 e.printStackTrace();
-            }catch (IOException e){
+            } catch (IOException e) {
                 e.printStackTrace();
             }
 
-        }else{
+        } else {
             Toast.makeText(this, "外部存储不可用", Toast.LENGTH_SHORT).show();
         }
     }
