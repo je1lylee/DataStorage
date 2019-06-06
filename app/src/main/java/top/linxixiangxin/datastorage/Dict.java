@@ -15,7 +15,6 @@ import android.widget.Toast;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
 
 
 import org.json.JSONArray;
@@ -110,9 +109,10 @@ public class Dict extends AppCompatActivity {
             Toast.makeText(this, "您查询的单词没有在数据库中，正在联网查询。", Toast.LENGTH_SHORT).show();
             userWord.setText(keyWord.getText().toString());
             try {
-                String justTemp = getJsonWithOkHttp(keyWord.getText().toString());//因为执行异步，子线程有些慢 获取不到string
+                getJsonWithOkHttp(keyWord.getText().toString());//因为执行异步，子线程有些慢 获取不到string
                 Thread.sleep(2000);
-                Log.d(TAG, "searchWord: " + justTemp);
+                Log.d(TAG, "searchWord: myres" + myRes);
+                describe.setText(myRes);
             } catch (InterruptedException e) {
                 e.printStackTrace();
             }
@@ -121,7 +121,7 @@ public class Dict extends AppCompatActivity {
 
     }
 
-    private String getJsonWithOkHttp(String word) {
+    private void getJsonWithOkHttp(String word) {
         final String uurl = "http://dict-co.iciba.com/api/dictionary.php?w=" + word + "&type=json&key=A33F2CEACCB62615DE15339D6A5166C7";
         final String[] wordRes = new String[5];
         new Thread() {
@@ -146,13 +146,12 @@ public class Dict extends AppCompatActivity {
                     myRes = giveMeString(list);
                     wordRes[2] = myRes;
                     Log.d(TAG, "run: "+wordRes[2]);
+                    Log.d(TAG, "run: myres"+myRes);
                 } catch (IOException e) {
                     e.printStackTrace();
                 }
             }
         }.start();
-        Log.d(TAG, "getJsonWithOkHttp: "+wordRes[2]);
-        return wordRes[2];
     }
 
     private String giveMeString(ArrayList<word> list) {
